@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"> 
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            $('.button').click(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: 'master.php',
+                    data: { path: $('.path').val() }
+                }).done(function(result) {
+                    $('#results').html(result);
+                });
+            });
+        });
+    </script>
+    <style>
+        body {
+            background-color: #555;
+        }
+        .content {
+            display: flex;
+            margin: 100px auto;
+            width: 1024px;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: #777;
+            padding: 25px;
+        }
+
+        input {
+            width: 200px;
+            margin: 10px 0;
+            height: 25px;
+            font-size: 14px;
+        }
+
+        input[type='text'] {
+            width: 500px;
+        }
+
+        input[type='button'] {
+            height: 35px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class='content'>
+        <label>Relative path of project folder compared to this file:</label>
+        <input class='path' type='text' value='../ent' />
+        <input class='button' type='button' value='Run Upgrade' />
+        <br/>
+        <br/>
+        <p>Script output: </p>
+        <div id='results'></div>
+    </div>
+</body>
+</html>
